@@ -1,4 +1,20 @@
-.comment{
-    background-color: blueviolet;
-    text-align: center;
+
+
+.titlebg{
+    background-color: aliceblue;
 }
+.Head{
+    font-family: serif;
+    font-size: 300%;
+    padding-left: 10px;
+
+}
+.comment{
+    padding: 5px;
+    border: 5px black;
+    width: auto;
+    border-radius: 5px;
+    height: auto;
+    background-color: aliceblue;
+}
+

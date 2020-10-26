@@ -1,30 +1,39 @@
 {%	extends	"blog/base.html"	%}
 {%	block	title	%}{{	post.title	}}{%	endblock	%}
 {%	block	content	%}
-	<h1>{{	post.title	}}</h1>
-	<p	class="date">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+<div class="titlebg" >
+	<h1 class="Head">{{	post.title	}}</h1>
+	<hr>
+</div>
+	<div class="container">
+	<p style="font-family: serif; font-weight: bold;">
 	Published	{{	post.publish	}}	by	{{	post.author	}}
 	</p>
+	<hr>
 		{{	post.body|linebreaks	}}
-		<p>
-			<a	href="{% url	"blog:post_share"	post.id	%}">
+		<button type="submit" >
+			<a	href="{% url "blog:post_share"	post.id	%}">
 					Share	this	post
 			</a>
-	</p>
-
+		</button>
+<hr>
 	{% with comments.count as total_comments %}
-		<h2>
+		<h2 style="text-decoration: underline; text-decoration-color: cyan;">
 			{{total_comments}} comment {{total_comments|pluralize}}
-
 		</h2>
 		{% endwith%}
+		<br>
 
 	{% for comment in comments%}
 	<div class="comment">
-		<p class="info">
+		<p style="text-decoration: underline; color: darkslategray;"> 
 			Comment {{forloop.counter}} by {{comment.name}}
-		</p>
-		{{comment.body|linebreaks}}
+			{{comment.body|linebreaks}}
+		
+		<hr>
+	</p>
 	</div>
 	{%empty%}
 	<p>There are no comments yet.</p>
@@ -33,11 +42,14 @@
 	{%if new_comment %}
 	<h2>Your comment has been added.</h2>
 	{%else%}
-	<h2>Add a new Comment</h2>
+	<br>
+	<h2 style="text-decoration: underline;">Add a new Comment</h2>
+	<br>
 	<form action="." method="POST">
 		{{comment_form.as_p}}
 		{%csrf_token%}
 		<p><input type="submit" value="Add Comment"></p>
 	</form>
 	{%endif%}
+	</div>
 {%	endblock	%}

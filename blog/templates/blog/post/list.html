@@ -1,17 +1,22 @@
 {%	extends	"blog/base.html"	%}
 {%	block	title	%}My	Blog{%	endblock	%}
 {%	block	content	%}
-	<h1>My	Blog</h1>
+<div class="jumbotron">
+	<h1 style="font-family: serif; text-align: center;">My	Blog</h1>
+</div>
+<div style="padding:20px">
 	{%	for	post	in	posts	%}
 	<h2>
-	<a	href="{{	post.get_absolute_url	}}">
+	<a	href="{{	post.get_absolute_url	}} " style="text-decoration: underline;">
 	{{	post.title	}}
 	</a>
 	</h2>
-	<p	class="date">
+	<p style="font-family: sans-serif ; font-weight: bold; font-size: smaller; ">
 	Published	{{	post.publish	}}	by	{{	post.author	}}
 	</p>
 	{{	post.body|truncatewords:30|linebreaks	}}
+	<hr>
         {%	endfor	%}
-    {% include "blog/pagination.html" with page=page_obj %}    
-{%	endblock	%}
+	{% include "blog/pagination.html" with page=page_obj %} 
+</div>   
+{%	endblock %}
